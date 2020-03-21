@@ -1,6 +1,12 @@
 import { API_URL } from './config'
 
 export default {
+  wakeUp: socketId => {
+    return fetch(`${API_URL}/wake-up?socketId=${socketId}`, {
+      credentials: 'include'
+    })
+      .then(res => res.ok)
+  },
     refresh: () => {
         const authToken = localStorage.getItem('authToken')
     

@@ -9,8 +9,11 @@ import {
   DropdownToggle, 
   DropdownMenu, 
   DropdownItem,
+  Nav,
   Navbar,
-  NavbarBrand
+  NavbarBrand,
+  NavItem,
+  NavLink
  } from 'reactstrap';
 import MyLibrary from "./MyLibrary";
 import Search from "./Search";
@@ -36,25 +39,14 @@ export default class Header extends Component {
     const {logout} = this.props;
     return (
           <Navbar>
-            <NavbarBrand href="/">My Catalogue</NavbarBrand>
-            <Search />
-            <Dropdown direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle
-              tag="span"
-              data-toggle="dropdown"
-              aria-expanded={this.state.dropdownOpen}
-              >
-              <FontAwesomeIcon icon={faBookReader} />
-              </DropdownToggle>
-              <DropdownMenu
-              style={{marginTop: "20px", backgroundColor: "rgba(255, 255, 255, 0.5)"}}
-              >
-                <DropdownItem>View Profile</DropdownItem>
-                <DropdownItem><Link to="/bookshelves"> My Library </Link></DropdownItem>
-                <DropdownItem><Link to="/myreviews">My Reviews</Link></DropdownItem>
-                <DropdownItem onClick={logout}>Sign Out</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            <NavbarBrand><Link to="/">My Catalogue</Link></NavbarBrand>
+            <Nav>
+              <NavItem><Search /></NavItem>
+            
+              <NavItem><NavLink><Link to="/bookshelves"> My Library </Link></NavLink></NavItem>
+              <NavItem><NavLink><Link to="/myreviews">My Reviews</Link></NavLink></NavItem>
+              <NavItem><NavLink onClick={logout}>Sign Out</NavLink></NavItem>
+            </Nav>
           </Navbar>
     )
   }

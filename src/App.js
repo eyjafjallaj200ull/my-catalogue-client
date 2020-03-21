@@ -52,12 +52,12 @@ export default class App extends Component {
   // }
 
   componentDidMount() {
-    socket.on("connect", (user) => {
+    socket.on("connect", () => {
       this.setState({loading: false})
       //const authToken = getToken()
-      if(user) {
+      /*if(user) {
         store.addAllAuthData(user);
-      }
+      }*/
     })
   }
 
@@ -109,7 +109,7 @@ export default class App extends Component {
                       <Route exact path="/bookshelves" component={MyLibrary} />
                       <Route exact path="/myreviews" component={MyReviews} />
                       <Route path="/bookshelves/:bookshelfId" render={(props) => (
-                        <Bookshelf key={props.match.params.bookshelfId} {...props} />)} />
+                        <Bookshelf key={props.match.params.bookshelfId} socket={socket} {...props} />)} />
                       <Route exact path="/books/:bookId" component={Book} />
                       <Route exact path="/search/:searchTerm" component={SearchResults} />
                     </Switch>

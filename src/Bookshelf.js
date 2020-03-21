@@ -19,8 +19,9 @@ class Bookshelf extends Component {
   componentDidMount() {
     this.context.removeBooks();
     const { match: { params } } = this.props;
-    fetch(`${API_URL}/bookshelf?bookshelfId=${params.bookshelfId}&userId=${this.context.authData.id}`, {
+    fetch(`${API_URL}/bookshelf?bookshelfId=${params.bookshelfId}`, {
         method: "GET",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json"
         }
@@ -35,6 +36,7 @@ class Bookshelf extends Component {
   removeBook = (shelfId, volumeId) => {
     fetch(`${API_URL}/volume/remove?userId=${this.context.authData.id}`, {
       method: "POST",
+      credentials: "include",
       headers: {
           "Content-Type": "application/json"
       },
@@ -43,8 +45,9 @@ class Bookshelf extends Component {
   .then(() => {
     this.context.removeBooks();
     const { match: { params } } = this.props;
-    fetch(`${API_URL}/bookshelf?bookshelfId=${params.bookshelfId}&userId=${this.context.authData.id}`, {
+    fetch(`${API_URL}/bookshelf?bookshelfId=${params.bookshelfId}`, {
         method: "GET",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json"
         }
@@ -57,7 +60,6 @@ class Bookshelf extends Component {
 
   render() {
     const { match: { params } } = this.props;
-    console.log(toJS(this.context.authData).bookshelves.find(shelf => shelf.id == params.bookshelfId).title)
     const {bookshelves} = toJS(this.context.authData);
     const shelfTitle = bookshelves.find(shelf => shelf.id == params.bookshelfId).title;
     return (
@@ -67,7 +69,7 @@ class Bookshelf extends Component {
             this.context.books ? <div>
               <ul>
               {
-                toJS(this.context.books).map(item => <li onClick={() => this.context.bookClick(item.volumeInfo)} key={item.id}><Link to={`/books/${item.id}`}>{item.volumeInfo.title}</Link><button onClick={() => this.removeBook(params.bookshelfId, item.id)}>Remove from shelf</button></li>)
+                toJS(this.context.books).map(item => <li key={item.id}><Link to={`/books/${item.id}`}>{item.volumeInfo.title}</Link><button onClick={() => this.removeBook(params.bookshelfId, item.id)}>Remove from shelf</button></li>)
               }
               </ul> 
             </div> : ""

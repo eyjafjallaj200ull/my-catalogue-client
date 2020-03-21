@@ -3,8 +3,7 @@ import {storeContext} from "./storeContext"
 import { observer } from "mobx-react"
 import {toJS} from "mobx"
 import {Link} from "react-router-dom"
-
-//move handleSubmit to SearchResults component
+import { withRouter } from 'react-router-dom'
 
 @observer
 class Search extends Component {
@@ -15,23 +14,24 @@ class Search extends Component {
         }
     }
     handleChange = (event) => {
-        this.setState({
-            searchTerm: event.target.value
-        })
+        this.setState({searchTerm: event.target.value})
+    }
+    handleKeyPress = (event) => {        
+        if(event.charCode == 13) {
+            this.context.resetSearchResults()
+            this.context.performSearch(this.state.searchTerm)
+            const { history } = this.props;
+            history.push(`/search/${this.state.searchTerm}`);
+        }
     }
     render() {
         return (
             <div>
-                <form>
-                    <input type="text" onChange={this.handleChange} />
-                    <Link to={`/search/${this.state.searchTerm}`}>
-                        Search
-                    </Link>
-                </form>
+                    <input type="text" onChange={(e) => this.handleChange(e)} onKeyPress={e => this.handleKeyPress(e)} placeholder="Search"/>
             </div>
         )
     }
 }
 
 Search.contextType = storeContext;
-export default Search;
+export default withRouter(Search);

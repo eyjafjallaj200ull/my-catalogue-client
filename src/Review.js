@@ -53,7 +53,7 @@ class Review extends Component {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({userid: this.props.userId, username: this.props.firstName, content: this.state.review, bookid: this.props.volumeId})
+            body: JSON.stringify({userid: this.props.userId, username: this.props.firstName, content: this.state.review, bookid: this.props.volumeId, booktitle: this.props.bookTitle})
         })
         .then((res) => {
             if(res.status === 204) {

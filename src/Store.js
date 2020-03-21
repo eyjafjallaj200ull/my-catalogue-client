@@ -69,7 +69,7 @@ class Store {
     reset = () => {
         this.authData = {
             name: null,
-            id: null,
+            email: null,
             bookshelves: null,
             firstName: null
         }
@@ -133,8 +133,8 @@ class Store {
     }
 
     @action 
-    fetchReviews = (volumeId, userId, callback) => {
-        API.fetchReviews(volumeId, userId, callback).then(() => {
+    fetchReviews = (volumeId, email, callback) => {
+        API.fetchReviews(volumeId, email, callback).then(() => {
             runInAction(() => {
                 this.addedNewReview = false;
             })
@@ -143,19 +143,24 @@ class Store {
     }
 
     @action
-    addNewReview = (volumeId, userId, callback) => {
+    addNewReview = (volumeId, email, callback) => {
         this.addedNewReview = true;
-        this.fetchReviews(volumeId, userId, callback);
-    }
-
-    @action
-    populateSearchResults = (data) => {
-        this.searchResults = data.items;
+        this.fetchReviews(volumeId, email, callback);
     }
 
     @action 
     resetSearchResults = () => {
         this.searchResults = null;
+    }
+
+    @action 
+    performSearch = (searchTerm) => {
+        API.performSearch(searchTerm)
+        .then(data => {
+            runInAction(() => {
+                this.searchResults = data.items
+            })
+        })
     }
 
 }

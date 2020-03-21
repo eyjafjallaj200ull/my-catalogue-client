@@ -57,18 +57,18 @@ class Reviews extends Component {
 }
 
   render() {
-    const {volumeId, userId, firstName} = this.props;
+    const {volumeId, userId, firstName, bookTitle} = this.props;
     const {editClicked, editReviewId} = this.state;
     const reviews = toJS(this.context.reviews);
     return (
       <div>
-      <Review volumeId={volumeId} userId={userId} firstName={firstName} />
+      <Review bookTitle={bookTitle} volumeId={volumeId} userId={userId} firstName={firstName} />
       {reviews ? 
           <ul>
             {
               reviews.map((review => {
                 if(editClicked && editReviewId === review.id) {
-                  return <Review parent="reviews" onEditSubmit={this.onEditSubmit} key={review.id} reviewId={review.id} reviewContent={review.content} volumeId={volumeId} userId={userId} firstName={firstName} />
+                  return <Review parent="reviews" onEditSubmit={this.onEditSubmit} key={review.id} reviewId={review.id} reviewContent={review.content} volumeId={volumeId} userId={userId} firstName={firstName} bookTitle={bookTitle} />
                 } else {
                   return (<li key={review.id}>
                     <div className="review">

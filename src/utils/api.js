@@ -9,6 +9,18 @@ class API {
             }
           })
           .then(resp => resp.json())
+          .catch(err => console.log(err))
+    }
+
+    fetchVolume = (volumeId) => {
+      return fetch(`${API_URL}/volume?volumeId=${volumeId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(resp => resp.json())
+      .catch(err => console.log(err))
     }
 
     removeBook = (shelfId, volumeId) => {
@@ -65,6 +77,16 @@ class API {
       })
     }
 
+    performSearch = (searchTerm) => {
+      return fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .catch(err => console.error(err))
+    }
 
 }
 

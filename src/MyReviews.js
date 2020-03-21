@@ -5,6 +5,9 @@ import { toJS } from "mobx";
 import Loading from "./Loading";
 import {API_URL} from "./config";
 import Review from "./Review";
+import API from "./utils/api";
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+
 
 const fetchMyReviews = (userId, callback) => {
     return fetch(`${API_URL}/myreviews?userId=${userId}`, {
@@ -64,10 +67,13 @@ class MyReviews extends Component {
                     {
                         myReviews.map((review => {
                             if(editClicked && editReviewId === review.id) {
-                                return <Review fetchMyReviews={fetchMyReviews} parent="myreviews" onEditSubmit={this.onEditSubmit} key={review.id} reviewId={review.id} reviewContent={review.content} volumeId={review.bookid} userId={review.userid} firstName={this.context.authData.firstName} />
+                                return <Review fetchMyReviews={fetchMyReviews} parent="myreviews" onEditSubmit={this.onEditSubmit} key={review.id} reviewId={review.id} reviewContent={review.content} volumeId={review.bookid} userId={review.userid} bookTitle={review.booktitle} firstName={this.context.authData.firstName} />
                             }
                             return (
                             <li key={review.id}>
+                                <h4>
+                                    <Link to={`/books/${review.bookid}`}>{review.booktitle}</Link> 
+                                </h4>
                                 <p>{review.content}</p>
                                 <span>on {review.timestamp}</span>
                                 <button onClick={() => this.deleteReview(review.id, fetchMyReviews)}>Delete</button>

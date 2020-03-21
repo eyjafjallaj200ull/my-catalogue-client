@@ -21,20 +21,19 @@ import {
 
 @observer
 class OAuth extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      disabled: "",
-      // bookshelfId: "",
-      // bookshelfClicked: false,
-      // shelfTitle: ""
-    }
-  }
+  state = {
+    disabled: ''
+  }  
 
-  componentDidMount = () => {
+  componentDidMount() {
     const { socket, provider } = this.props
+    console.log(socket);
+    console.log(provider);
+    
+        
 
     socket.on(provider, user => {  
+      console.log("??")
       this.popup.close()
       //this.props.addProviderData(provider, providerData, email)
       this.context.addAllAuthData(user);
@@ -48,8 +47,10 @@ class OAuth extends Component {
 
   // Routinely checks the popup to re-enable the login button
   // if the user closes the popup without authenticating.
-  checkPopup() {
+  checkPopup = () => {
     const check = setInterval(() => {
+      console.log(this.props.socket.id);
+      
       const { popup } = this
       if (!popup || popup.closed || popup.closed === undefined) {
         clearInterval(check)
@@ -61,7 +62,7 @@ class OAuth extends Component {
   // Launches the popup by making a request to the server and then
   // passes along the socket id so it can be used to send back user
   // data to the appropriate socket on the connected client.
-  openPopup() {
+  openPopup = () => {
     const { provider, socket } = this.props
     const width = 600, height = 600
     const left = (window.innerWidth / 2) - (width / 2)
@@ -78,9 +79,9 @@ class OAuth extends Component {
   // Kicks off the processes of opening the popup on the server and listening
   // to the popup. It also disables the login button so the user can not
   // attempt to login to the provider twice.
-  startAuth(e) {
+  startAuth = () => {
     if (!this.state.disabled) {
-      e.preventDefault()
+      //e.preventDefault()
       this.popup = this.openPopup()
       this.checkPopup()
       this.setState({disabled: 'disabled'})
@@ -101,7 +102,7 @@ class OAuth extends Component {
             <NavLink>
               <div className={'button-wrapper fadein-fast'}>
                 <button
-                  onClick={this.startAuth.bind(this)}
+                  onClick={this.startAuth}
                   className={`${provider} ${disabled} button`}
                 > 
                   <FontAwesome
