@@ -22,12 +22,13 @@ class Search extends Component {
             this.context.performSearch(this.state.searchTerm)
             const { history } = this.props;
             history.push(`/search/${this.state.searchTerm}`);
+            this.setState({searchTerm: ""})
         }
     }
     render() {
         return (
-            <div>
-                    <input type="text" onChange={(e) => this.handleChange(e)} onKeyPress={e => this.handleKeyPress(e)} placeholder="Search"/>
+            <div className="w-100">
+                    <input className="text-center w-100 search-input py-1" type="text" onChange={(e) => this.handleChange(e)} onKeyPress={e => this.handleKeyPress(e)} placeholder="Search"/>
             </div>
         )
     }

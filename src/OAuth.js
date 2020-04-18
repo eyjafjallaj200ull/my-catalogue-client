@@ -96,23 +96,16 @@ class OAuth extends Component {
     const { disabled} = this.state
 
     return (
-      <div>
-         <Navbar>
-            <NavbarBrand href="/">My Catalogue</NavbarBrand>
-            <NavLink>
-              <div className={'button-wrapper fadein-fast'}>
+              <div className={'button-wrapper fadein-fast w-100 h-100'}>
                 <button
                   onClick={this.startAuth}
-                  className={`${provider} ${disabled} button`}
+                  className={`${provider} ${disabled} btn w-100 h-100`}
                 > 
                   <FontAwesome
                     name={provider}
                   />      Sign in with Google
                 </button>
               </div>
-            </NavLink>
-          </Navbar>
-      </div>
     )
   }
 }

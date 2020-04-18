@@ -4,7 +4,8 @@ import {API_URL} from "./config";
 import {storeContext} from "./storeContext"
 import { observer } from "mobx-react"
 import { toJS } from "mobx";
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+//make it buttondropdown
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import API from "./utils/api"
 import Loading from "./Loading";
 
@@ -101,28 +102,35 @@ class Book extends Component {
                         }
                     </h3> : ""}
                     {info.description ? <p>{this.smoothDescription(info.description)}</p> : ""}
-                        <Dropdown direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <DropdownToggle
-                            tag="div"
-                            data-toggle="dropdown"
-                            aria-expanded={this.state.dropdownOpen}
-                            >
-                                Add to Library
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                {
-                                    bookshelves.filter(shelf => shelf.id === 0 || shelf.id === 2 || shelf.id === 3 || shelf.id === 4 )
-                                    .map(shelf => {
-                                        return (
-                                            <DropdownItem key={shelf.id} onClick={() => this.addToShelf(shelf.id, params.bookId)}>
-                                                {shelf.title}
-                                            </DropdownItem>
-                                        )
-                                    })
-                                }
-                            </DropdownMenu>
-                        </Dropdown>
-                    <Reviews bookTitle={info.title} userId={authData.id} volumeId={params.bookId} firstName={authData.firstName} />
+                        {
+                            authData.id ?
+                            <React.Fragment>
+                                <ButtonDropdown className="add-to-library" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                    <DropdownToggle
+                                    >
+                                        Add to Library
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        {
+                                            bookshelves.filter(shelf => shelf.id === 0 || shelf.id === 2 || shelf.id === 3 || shelf.id === 4 )
+                                            .map(shelf => {
+                                                return (
+                                                    <DropdownItem key={shelf.id} onClick={() => this.addToShelf(shelf.id, params.bookId)}>
+                                                        {shelf.title}
+                                                    </DropdownItem>
+                                                )
+                                            })
+                                        }
+                                    </DropdownMenu>
+                                </ButtonDropdown>
+                                <Reviews bookTitle={info.title} userId={authData.id} volumeId={params.bookId} firstName={authData.firstName} />
+                            </React.Fragment>
+                            : 
+                            <div>
+                                <h5>Please log in to make reviews and more.</h5>
+                            </div>
+                        }
+                    
                 </div>
             )
         } else {

@@ -4,14 +4,12 @@ books -reading, have read, to read,
 book component that shows review, rating and other info  */
 
 import React, {Component} from 'react';
-import io from "socket.io-client";
 import OAuth from "./OAuth";
 import { notify } from 'react-notify-toast'
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Loading from './Loading'
 import MyLibrary from "./MyLibrary"
 import api from './api'
-import {API_URL} from "./config";
 import { setToken, getToken, removeToken } from './utils'
 import 'font-awesome/css/font-awesome.min.css';
 import { observer } from "mobx-react"
@@ -23,11 +21,10 @@ import Bookshelf from './Bookshelf'
 import Book from './Book'
 import MyReviews from"./MyReviews"
 import SearchResults from "./SearchResults"
-
+import {socket, provider} from "./utils/auth"
 //import './App.css';
 
-const socket = io(API_URL);
-const provider = "google";
+//get header outside of container
 
 
 @observer
@@ -96,15 +93,13 @@ export default class App extends Component {
       <storeContext.Provider value={store}>
         <Router>
           <div className={"wrapper"}>
-            <div className={"container"}>
-              
+              <Header logout={this.logout}/>              
               <div className='container'>
                 {this.state.loading
                   ? <Loading /> 
                   :
-                  toJS(store.authData).id ? 
-                  <React.Fragment>
-                    <Header logout={this.logout}/>
+                  
+                    
                     <Switch>
                       <Route exact path="/bookshelves" component={MyLibrary} />
                       <Route exact path="/myreviews" component={MyReviews} />
@@ -113,16 +108,9 @@ export default class App extends Component {
                       <Route exact path="/books/:bookId" component={Book} />
                       <Route exact path="/search/:searchTerm" component={SearchResults} />
                     </Switch>
-                  </React.Fragment>
-                  : <Route exact path="/" render={() => <OAuth
-                    provider={provider}
-                    key={provider}
-                    socket={socket}
-                    />}
-                    />
+                  
                 }
               </div>
-            </div>
           </div>
         </Router>
       </storeContext.Provider>

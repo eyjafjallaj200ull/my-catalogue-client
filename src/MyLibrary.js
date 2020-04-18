@@ -24,10 +24,10 @@ class MyLibrary extends Component {
         console.log(bookshelves)
         return(
             bookshelves ?   
-                <div>
+                <div id="my-library">
                     <ul>
                     {
-                        bookshelves.map(shelf => <li onClick={() => bookshelfClick(shelf.title)} key={shelf.id}><Link to={`/bookshelves/${shelf.id}`}>{shelf.title}</Link></li>)
+                        bookshelves.filter(shelf => shelf.id != 5 && shelf.id != 6 && shelf.id != 9).map(shelf => <li onClick={() => bookshelfClick(shelf.title)} key={shelf.id}><Link className="lightblue" to={`/bookshelves/${shelf.id}`}>{shelf.title}</Link></li>)
                     }
                     </ul>
                 </div>

@@ -12,7 +12,7 @@ class SearchResults extends Component {
         if(searchResults) {
             return (
                 <ul>
-                    {searchResults.map(item => <li key={item.id}><Link to={`/books/${item.id}`}>{item.volumeInfo.title}</Link></li>)}
+                    {searchResults.map(item => <li key={item.id}><Link className="lightblue" to={`/books/${item.id}`}>{item.volumeInfo.title}</Link></li>)}
                 </ul>
         )} else {
             return <Loading />

@@ -71,13 +71,21 @@ class MyReviews extends Component {
                             }
                             return (
                             <li key={review.id}>
-                                <h4>
-                                    <Link to={`/books/${review.bookid}`}>{review.booktitle}</Link> 
-                                </h4>
-                                <p>{review.content}</p>
-                                <span>on {review.timestamp}</span>
-                                <button onClick={() => this.deleteReview(review.id, fetchMyReviews)}>Delete</button>
-                                <button onClick={() => this.editReview(review.id)}>Edit</button>
+                                <div className="d-flex reviews review">
+                                    <div className="review-body">
+                                        <h4>
+                                            <Link className="lightblue" to={`/books/${review.bookid}`}>{review.booktitle}</Link> 
+                                        </h4>
+                                        <p>{review.content}</p>
+                                        <div className="d-flex justify-content-end">
+                                            <span className="date">on {review.timestamp}</span>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex flex-column">
+                                        <button className="delete-review my-1 px-3 py-1" onClick={() => this.deleteReview(review.id, fetchMyReviews)}>Delete</button>
+                                        <button className="edit-review my-1 px-3 py-1" onClick={() => this.editReview(review.id)}>Edit</button>
+                                    </div>
+                                </div>
                             </li>
                             )
                         }))

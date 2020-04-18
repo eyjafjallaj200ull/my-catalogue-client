@@ -71,18 +71,21 @@ class Reviews extends Component {
                   return <Review parent="reviews" onEditSubmit={this.onEditSubmit} key={review.id} reviewId={review.id} reviewContent={review.content} volumeId={volumeId} userId={userId} firstName={firstName} bookTitle={bookTitle} />
                 } else {
                   return (<li key={review.id}>
-                    <div className="review">
-                  <p>{review.content}</p>
-                  <h4>by {review.username}</h4>
-                  <span>on {review.timestamp}</span>
-                  { review.isUserReview ?
-                  <React.Fragment>
-                    <button onClick={() => this.deleteReview(review.id, this.context.fetchReviews)}>Delete</button>
-                    <button onClick={() => this.editReview(review.id)}>Edit</button>
-                  </React.Fragment>
-                  : ""
-                  }
-                  </div>
+                    <div className="review reviews">
+                      <div className="review-body">
+                        <p>{review.content}</p>
+                        <h4>by {review.username}</h4>
+                        <span className="date">on {review.timestamp}</span>
+                      </div>
+
+                      { review.isUserReview ?
+                      <div>
+                        <button className="mx-1 px-3 py-1 delete-review" onClick={() => this.deleteReview(review.id, this.context.fetchReviews)}>Delete</button>
+                        <button className="mx-1 px-3 py-1 edit-review" onClick={() => this.editReview(review.id)}>Edit</button>
+                      </div>
+                      : ""
+                      }
+                    </div>
                 </li>)}
               }))
             }

@@ -11,19 +11,176 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }*/
-
+body {
+  padding-top: 90px;
+  color: #494454;
+}
 a {
-  color: black;
+  color: #494454;
 }
 a:hover {
-  color: black;
+  color: #494454;
   text-decoration: none;
 }
 
 ul {
   list-style: none;
+  padding-left: 0;
 }
 ul li {
   display: flex;
   justify-content: space-between;
+}
+*:focus {
+  outline: none !important;
+}
+.navbar {
+  background-color: white;
+}
+.navbar-brand a {
+  color: #0A1172;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+.reviews {
+  flex-basis: 100%;
+}
+.reviews .review-body {
+  flex-grow: 3;
+}
+.google.btn {
+  color: #0A1172;
+  background-color: white;
+}
+.google.btn:hover {
+  background-color: #0A1172;
+  color: white;
+}
+.search-input {
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  border-style: solid;
+  border-color: #AEA8BA;
+  border-width: 1px;
+  color: #0A1172;
+}
+.nav-item .nav-link {
+  color: #0A1172 !important;
+  border-radius: .25rem;
+  font-weight: 500;
+}
+.nav-item .nav-link:hover {
+  background-color: #0A1172;
+  color: white !important;
+}
+#sign-out {
+  color: #640000 !important;
+}
+#sign-out:hover {
+  background-color: #640000;
+  color: white !important;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    max-width: 760px;
+  }
+}
+#my-library {
+  font-size: large;
+}
+.navbar {
+  border-bottom: #F7EBFF solid 2px;
+}
+.remove-book {
+  background-color: #640000;
+  color: white !important;
+  border-radius: .25rem;
+  border: 1px #640000 solid;
+}
+.remove-book:hover {
+  border: 1px #640000 solid;
+  color: #640000 !important;
+  background-color: white;
+}
+.shelf {
+  font-size: large;
+}
+.edit-review {
+  border: 1px solid #0A1172;
+  background-color: #0A1172;
+  color: white !important;
+  border-radius: .25rem;
+}
+.edit-review:hover {
+  color: #0A1172 !important;
+  background-color: white;
+}
+.delete-review {
+  background-color: #640000;
+  color: white !important;
+  border-radius: .25rem;
+  border: 1px #640000 solid;
+}
+.delete-review:hover {
+  color: #640000 !important;
+  background-color: white;
+}
+.lightblue {
+  color: #0067BE !important;
+}
+.lightblue:hover {
+  color: #004FA3 !important;
+}
+.textarea-class {
+  border-radius: .25rem;
+  height: 200px;
+  width: 50%;
+} 
+@media (max-width: 768px) {
+  body {
+    padding-top: initial;
+  }
+  .navbar {
+    position: initial;
+  }
+  .textarea-class {
+    width: 100%;
+  }
+}
+.submit-review {
+  border: 1px solid #0A1172;
+  background-color: #0A1172;
+  color: white !important;
+  border-radius: .25rem;
+  vertical-align: text-bottom;
+}
+.submit-review:hover {
+  color: #0A1172 !important;
+  background-color: white;
+}
+.review {
+  background-color: #F4F9FF;
+  border-radius: .25rem;
+  padding: 8px;
+  margin: 10px auto 10px
+}
+.btn.btn-secondary {
+  border: none;
+  background-color: #0067BE !important;
+  color: white !important;
+  border-radius: .25rem !important;
+  margin-bottom: 10px;
+}
+.btn.btn-secondary:hover {
+  background-color: #004FA3 !important;
+}
+.btn.btn-secondary:focus {
+  box-shadow: none !important;
+}
+.add-to-library .dropdown-item:focus {
+  background-color: #0067BE !important;
+}
+.date {
+  color: #7A7485;
 }

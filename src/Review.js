@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {API_URL} from "./config";
 import { storeContext } from "./storeContext";
+import API from "./utils/api"
 
 class Review extends Component {
     constructor(props) {
@@ -24,7 +25,8 @@ class Review extends Component {
         })
     }
     handleSubmit = (event) => {
-        if(this.state.isEditComponent) {
+        if(this.state.review)
+        {if(this.state.isEditComponent) {
             fetch(`${API_URL}/review`, {
                 method: "PUT",
                 headers: {
@@ -35,7 +37,7 @@ class Review extends Component {
             .then((res) => {
                 if(res.status === 204) {
                     if(this.props.parent === "reviews") {
-                        this.context.fetchReviews(this.props.volumeId, this.context.authData.id, this.context.populateReviews); 
+                        API.fetchReviews(this.props.volumeId, this.context.authData.id, this.context.populateReviews); 
                     }
                     else if(this.props.parent === "myreviews") {
                         this.props.fetchMyReviews(this.context.authData.id, this.context.populateMyReviews)
@@ -67,7 +69,7 @@ class Review extends Component {
             }
         })
         .catch(err => console.log(err))
-        }
+        }}
         event.preventDefault();
     }
     render() {
@@ -77,8 +79,8 @@ class Review extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <textarea value={this.state.review} onChange={this.handleChange} />
-                    <input type="submit" value="Submit"/>
+                    <textarea className="textarea-class" placeholder="Write a review..." value={this.state.review} onChange={this.handleChange} />
+                    <input className="submit-review mx-1 px-3 py-1" type="submit" value="Submit"/>
                 </form>
             </div>
         )

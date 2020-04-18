@@ -69,7 +69,17 @@ class Bookshelf extends Component {
             this.context.books ? <div>
               <ul>
               {
-                toJS(this.context.books).map(item => <li key={item.id}><Link to={`/books/${item.id}`}>{item.volumeInfo.title}</Link><button onClick={() => this.removeBook(params.bookshelfId, item.id)}>Remove from shelf</button></li>)
+                toJS(this.context.books)
+                .map(item => {
+                return (
+                <li className="shelf my-2" key={item.id}>
+                  <Link className="w-75 lightblue" to={`/books/${item.id}`}>{item.volumeInfo.title}</Link>
+                  <div><button className="remove-book" onClick={() => this.removeBook(params.bookshelfId, item.id)}>
+                    Remove from shelf
+                  </button>
+                  </div>
+                </li>)
+              })
               }
               </ul> 
             </div> : ""
