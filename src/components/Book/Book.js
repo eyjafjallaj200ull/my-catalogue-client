@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import Reviews from "./Reviews";
-import {API_URL} from "./config";
-import {storeContext} from "./storeContext"
+import Reviews from "../Reviews/Reviews";
+import {API_URL} from "../../config";
+import {storeContext} from "../../utils/storeContext"
 import { observer } from "mobx-react"
 import { toJS } from "mobx";
 //make it buttondropdown
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import API from "./utils/api"
-import Loading from "./Loading";
+import API from "../../utils/api"
+import Loading from "../Loading/Loading";
 
 //try passing volume title to reviews
 

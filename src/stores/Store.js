@@ -1,8 +1,8 @@
 import { observable, action, autorun, set, toJS, runInAction } from 'mobx';
 //import jwtDecode from 'jwt-decode'
-import {API_URL} from "./config";
+import {API_URL} from "../config";
 import { thisExpression } from '@babel/types';
-import API from "./utils/api"
+import API from "../utils/api"
 
 const autoSave = (_this) => {
     let firstRun = true

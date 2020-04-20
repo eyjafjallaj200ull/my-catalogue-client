@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import Review from "./Review";
 import { observer } from "mobx-react";
-import { storeContext } from "./storeContext";
+import { storeContext } from "../../utils/storeContext";
 import { toJS } from "mobx";
-import Loading from "./Loading";
-import {API_URL} from "./config";
-import API from "./utils/api"
+import Loading from "../Loading/Loading";
+import {API_URL} from "../../config";
+import API from "../../utils/api"
 
 
 //what should happen when you click edit?

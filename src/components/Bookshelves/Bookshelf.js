@@ -7,9 +7,9 @@ onClick should render Book component
 item.id should be passed as prop to Book
 */
 import React, {Component} from "react";
-import {API_URL} from "./config";
-import Book from "./Book.js";
-import {storeContext} from "./storeContext"
+import {API_URL} from "../../config";
+import Book from "../Book/Book.js";
+import {storeContext} from "../../utils/storeContext"
 import { observer } from "mobx-react"
 import {toJS} from "mobx"
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';

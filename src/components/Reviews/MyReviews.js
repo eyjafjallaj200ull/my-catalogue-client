@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import { observer } from "mobx-react";
-import { storeContext } from "./storeContext";
+import { storeContext } from "../../utils/storeContext";
 import { toJS } from "mobx";
-import Loading from "./Loading";
-import {API_URL} from "./config";
+import Loading from "../Loading/Loading";
+import {API_URL} from "../../config";
 import Review from "./Review";
-import API from "./utils/api";
+import API from "../../utils/api";
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 

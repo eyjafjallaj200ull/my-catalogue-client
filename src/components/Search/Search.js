@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {storeContext} from "./storeContext"
+import {storeContext} from "../../utils/storeContext"
 import { observer } from "mobx-react"
 import {toJS} from "mobx"
 import {Link} from "react-router-dom"
@@ -17,7 +17,7 @@ class Search extends Component {
         this.setState({searchTerm: event.target.value})
     }
     handleKeyPress = (event) => {        
-        if(event.charCode == 13) {
+        if(event.charCode == 13 && this.state.searchTerm) {
             this.context.resetSearchResults()
             this.context.performSearch(this.state.searchTerm)
             const { history } = this.props;
@@ -28,7 +28,14 @@ class Search extends Component {
     render() {
         return (
             <div className="w-100">
-                    <input className="text-center w-100 search-input py-1" type="text" onChange={(e) => this.handleChange(e)} onKeyPress={e => this.handleKeyPress(e)} placeholder="Search"/>
+                    <input 
+                        className="text-center w-100 search-input py-1" 
+                        type="text" 
+                        onChange={(e) => this.handleChange(e)} 
+                        onKeyPress={e => this.handleKeyPress(e)} 
+                        placeholder="Search"
+                        value={this.state.searchTerm}
+                    />
             </div>
         )
     }

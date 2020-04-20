@@ -12,11 +12,11 @@ import {
   NavbarToggler,
   NavItem
  } from 'reactstrap';
-import MyLibrary from "./MyLibrary";
-import Search from "./Search";
-import { storeContext } from "./storeContext";
-import OAuth from "./OAuth"
-import {socket, provider} from "./utils/auth"
+import MyLibrary from "../Bookshelves/MyLibrary";
+import Search from "../Search/Search";
+import { storeContext } from "../../utils/storeContext";
+import OAuth from "../Auth/OAuth"
+import {socket, provider} from "../../utils/auth"
 import { observer } from "mobx-react"
 
 //consider making links disabled when you're already on that route

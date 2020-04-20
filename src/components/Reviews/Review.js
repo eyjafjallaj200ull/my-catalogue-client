@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import {API_URL} from "./config";
-import { storeContext } from "./storeContext";
-import API from "./utils/api"
+import {API_URL} from "../../config";
+import { storeContext } from "../../utils/storeContext";
+import API from "../../utils/api"
 
 class Review extends Component {
     constructor(props) {

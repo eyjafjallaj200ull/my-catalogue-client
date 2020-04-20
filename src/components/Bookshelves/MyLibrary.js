@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import Loading from "./Loading"
-import {storeContext} from "./storeContext"
+import Loading from "../Loading/Loading"
+import {storeContext} from "../../utils/storeContext"
 import { observer } from "mobx-react"
 import {toJS} from "mobx"
 import Bookshelf from "./Bookshelf";

@@ -1,6 +1,12 @@
 import {API_URL} from "../config";
 
 class API {
+    logout = () => {
+      return fetch(`${API_URL}/logout`, {
+        credentials: 'include'
+      })
+      .then(res => res.ok)
+  }
     fetchBooks = (bookshelfId) => {
         return fetch(`${API_URL}/bookshelf?bookshelfId=${bookshelfId}`, {
             method: "GET",

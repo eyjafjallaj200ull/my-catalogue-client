@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import FontAwesome from "react-fontawesome";
-import {API_URL} from "./config";
-import MyLibrary from "./MyLibrary";
+import {API_URL} from "../../config";
+import MyLibrary from "../Bookshelves/MyLibrary";
 import { observer } from "mobx-react"
-import {storeContext} from "./storeContext"
+import {storeContext} from "../../utils/storeContext"
 
 
 import {
