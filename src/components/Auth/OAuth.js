@@ -1,23 +1,9 @@
 import React, {Component} from "react";
 import FontAwesome from "react-fontawesome";
 import {API_URL} from "../../config";
-import MyLibrary from "../Bookshelves/MyLibrary";
 import { observer } from "mobx-react"
 import {storeContext} from "../../utils/storeContext"
 
-
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
 
 @observer
 class OAuth extends Component {
@@ -29,20 +15,11 @@ class OAuth extends Component {
     const { socket, provider } = this.props
     console.log(socket);
     console.log(provider);
-    
-        
-
     socket.on(provider, user => {  
       console.log("??")
       this.popup.close()
-      //this.props.addProviderData(provider, providerData, email)
       this.context.addAllAuthData(user);
     })
-
-    // socket.on(`${provider}-error`, msg => {
-    //   this.popup.close()
-    //   notify.show(msg)
-    // })
   }
 
   // Routinely checks the popup to re-enable the login button
@@ -87,9 +64,6 @@ class OAuth extends Component {
       this.setState({disabled: 'disabled'})
     }
   }
-  // bookshelfClick = (id, title) => {
-  //   this.setState({bookshelfClicked: true, bookshelfId: id, shelfTitle: title})
-  // }
 
   render() {
     const { provider } = this.props

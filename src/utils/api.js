@@ -10,6 +10,7 @@ class API {
     fetchBooks = (bookshelfId) => {
         return fetch(`${API_URL}/bookshelf?bookshelfId=${bookshelfId}`, {
             method: "GET",
+            credentials: "include",
             headers: {
               "Content-Type": "application/json"
             }
@@ -32,6 +33,7 @@ class API {
     removeBook = (shelfId, volumeId) => {
         return fetch(`${API_URL}/volume/remove`, {
           method: "POST",
+          credentials: "include",
           headers: {
               "Content-Type": "application/json"
           },
@@ -40,8 +42,9 @@ class API {
     }
 
     addToShelf = (shelfId, volumeId) => {
-        fetch(`${API_URL}/volume/add`, {
+        return fetch(`${API_URL}/volume/add`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -81,6 +84,26 @@ class API {
           },
           body: JSON.stringify({reviewId})
       })
+    }
+
+    addReview = (userid, username, content, bookid, booktitle) => {
+      return fetch(`${API_URL}/review`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({userid, username, content, bookid, booktitle})
+    })
+    }
+
+    editReview = (content, reviewId) => {
+      return fetch(`${API_URL}/review`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({content: content, id: reviewId})
+    })
     }
 
     performSearch = (searchTerm) => {

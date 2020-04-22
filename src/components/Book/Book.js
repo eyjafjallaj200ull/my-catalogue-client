@@ -1,45 +1,15 @@
 import React, {Component} from "react";
 import Reviews from "../Reviews/Reviews";
-import {API_URL} from "../../config";
 import {storeContext} from "../../utils/storeContext"
 import { observer } from "mobx-react"
 import { toJS } from "mobx";
-//make it buttondropdown
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import API from "../../utils/api"
 import Loading from "../Loading/Loading";
 
-//try passing volume title to reviews
 
 @observer
 class Book extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         volumeInfo: {}
-    //     }
-    // }
-    // componentDidMount() {
-    //     fetch(`${API_URL}/volume`, {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({volumeId: this.props.volumeId})
-    //       })
-    //     .then(res => {
-    //         return fetch(`${API_URL}/volume`, {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     })
-    //         .then(resp => resp.json())
-    //         .then(data => this.setState({volumeInfo: data}))
-    //         .catch(err => console.log(err))
-    //         })
-    //     .catch(err => console.log(err))
-    // }
     constructor(props) {
         super(props);
         this.state = {
@@ -54,14 +24,7 @@ class Book extends Component {
     }
 
     addToShelf = (shelfId, volumeId) => {
-        fetch(`${API_URL}/volume/add?userId=${this.context.authData.id}`, {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({shelfId, volumeId})
-        })
+        API.addToShelf(shelfId, volumeId);
     }
 
     smoothDescription = (description) => {

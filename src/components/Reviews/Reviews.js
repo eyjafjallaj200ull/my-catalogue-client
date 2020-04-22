@@ -7,16 +7,6 @@ import Loading from "../Loading/Loading";
 import {API_URL} from "../../config";
 import API from "../../utils/api"
 
-
-//what should happen when you click edit?
-/*
-pass the review content to the onclick 
-you will need to render the review component with its input value being the content
-when you press submit you make a request to editreview in the api
-
-**** reviews should always be displayed in order of their timestamps
-*/
-
 @observer
 class Reviews extends Component {
   constructor(props) {
@@ -45,13 +35,7 @@ class Reviews extends Component {
   }
 
   deleteReview = (reviewId, callback) => {
-    return fetch(`${API_URL}/review`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({reviewId})
-    })
+    API.deleteReview(reviewId)
     .then(res => res.status === 204 ? callback(this.props.volumeId, this.context.authData.id, this.context.populateReviews) : console.log("something went wrong"))
     .catch(err => console.error(err))
 }

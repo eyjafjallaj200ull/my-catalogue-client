@@ -1,9 +1,6 @@
 import React, {Component} from "react";
 import Notifications from 'react-notify-toast'
-//import FontAwesome from "react-fontawesome";
 import { Route, NavLink, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBookReader, faFileExcel } from '@fortawesome/free-solid-svg-icons'
 import { 
   Collapse,
   Nav,
@@ -12,7 +9,6 @@ import {
   NavbarToggler,
   NavItem
  } from 'reactstrap';
-import MyLibrary from "../Bookshelves/MyLibrary";
 import Search from "../Search/Search";
 import { storeContext } from "../../utils/storeContext";
 import OAuth from "../Auth/OAuth"
