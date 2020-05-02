@@ -30,7 +30,9 @@ class Bookshelf extends Component {
 
   render() {
     const { match: { params } } = this.props;
+    const {bookshelfId} = params;
     const {bookshelves} = toJS(this.context.authData);
+    const editableShelf = bookshelfId == 0 || bookshelfId == 2 || bookshelfId == 3 || bookshelfId == 4;    
     const shelfTitle = bookshelves.find(shelf => shelf.id == params.bookshelfId).title;
     return (
         <div>
@@ -44,10 +46,10 @@ class Bookshelf extends Component {
                 return (
                 <li className="shelf my-2" key={item.id}>
                   <Link className="w-75 lightblue" to={`/books/${item.id}`}>{item.volumeInfo.title}</Link>
-                  <div><button className="remove-book" onClick={() => this.removeBook(params.bookshelfId, item.id)}>
+                  {editableShelf ? <div><button className="remove-book" onClick={() => this.removeBook(bookshelfId, item.id)}>
                     Remove from shelf
                   </button>
-                  </div>
+                  </div> : ""}
                 </li>)
               })
               }
