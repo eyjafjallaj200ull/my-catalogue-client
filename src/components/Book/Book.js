@@ -24,7 +24,12 @@ class Book extends Component {
     }
 
     addToShelf = (shelfId, volumeId) => {
-        API.addToShelf(shelfId, volumeId);
+        API.addToShelf(shelfId, volumeId)
+        .then(message => {
+            if(message === "Unauthorised") {
+                this.context.onSessionExpiry()
+            }
+        })
     }
 
     smoothDescription = (description) => {

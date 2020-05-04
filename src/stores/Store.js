@@ -32,6 +32,9 @@ class Store {
         autoSave(this);
     }
 
+    @observable
+    sessionIsExpired = false;
+
     @observable 
     authData = {
         name: null,
@@ -82,6 +85,12 @@ class Store {
         }
         this.reviews = null;
         this.searchResults = null;
+        this.sessionIsExpired = false;
+    }
+
+    @action 
+    onSessionExpiry = () => {
+        this.sessionIsExpired = true;
     }
 
     @action

@@ -12,19 +12,29 @@ class Bookshelf extends Component {
     this.context.removeBooks();
     const { match: { params } } = this.props;
     API.fetchBooks(params.bookshelfId)
-    .then(data => {console.log(data); this.context.addBooks(data)})
+    .then(data => {
+     if(data) {
+       this.context.addBooks(data);
+      } else {
+        this.context.onSessionExpiry();
+      }
+    })
   }
   componentWillUnmount() {
     this.context.removeBooks();
   }
   removeBook = (shelfId, volumeId) => {
     API.removeBook(shelfId, volumeId)
-    .then(() => {
-      this.context.removeBooks();
-      const { match: { params } } = this.props;
-      API.fetchBooks(params.bookshelfId)
-        .then(data => {console.log(data); this.context.addBooks(data)})
-        .catch(err => console.log(err)) 
+    .then((message) => {
+      if(message === "Success") {
+        this.context.removeBooks();
+        const { match: { params } } = this.props;
+        API.fetchBooks(params.bookshelfId)
+          .then(data => {console.log(data); this.context.addBooks(data)})
+          .catch(err => console.log(err)) 
+      } else {
+        this.context.onSessionExpiry()
+      }
     })
   }
 

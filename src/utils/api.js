@@ -15,8 +15,16 @@ class API {
               "Content-Type": "application/json"
             }
           })
-          .then(resp => resp.json())
-          .catch(err => console.log(err))
+          .then(resp => {
+            if(resp.status == 401) {
+              console.log("unauthorised")
+            } else {
+              return resp.json()
+            }
+          })
+          .catch(err => {
+            console.log(err)
+          })
     }
 
     fetchVolume = (volumeId) => {
@@ -39,6 +47,13 @@ class API {
           },
           body: JSON.stringify({shelfId, volumeId})
       })
+      .then((res) => {
+        if(res.status !== 401) {
+          return "Success"
+        } else {
+          return "Unauthorised"
+        }
+      })
     }
 
     addToShelf = (shelfId, volumeId) => {
@@ -49,6 +64,13 @@ class API {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({shelfId, volumeId})
+        })
+        .then((res) => {
+          if(res.status !== 401) {
+            return "Success"
+          } else {
+            return "Unauthorised"
+          }
         })
     }
 
