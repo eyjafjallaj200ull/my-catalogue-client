@@ -7,13 +7,15 @@ import useStore from "../../utils/useStore"
 
 const SearchResults = observer(()=> {
     const store = useStore()
-    const searchResults = store.searchResults;
-    if(searchResults) {
+    const searchResults = toJS(store.searchResults);
+    if(searchResults && searchResults.length > 0) {
         return (
             <ul>
                 {searchResults.map(item => <li key={item.id}><Link className="lightblue" to={`/books/${item.id}`}>{item.volumeInfo.title}</Link></li>)}
             </ul>
-    )} else {
+    )} else if(searchResults && searchResults.length === 0) {
+        return <h5>No results found.</h5>
+    } else {
         return <Loading />
     }
 })

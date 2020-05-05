@@ -165,9 +165,13 @@ class Store {
     @action 
     performSearch = (searchTerm) => {
         API.performSearch(searchTerm)
-        .then(data => {
+        .then(data => {     
             runInAction(() => {
-                this.searchResults = data.items
+                if (data.items) {
+                    this.searchResults = data.items
+                } else {
+                    this.searchResults = []
+                }
             })
         })
     }
