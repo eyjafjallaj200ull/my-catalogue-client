@@ -184,3 +184,10 @@ ul li {
 .date {
   color: #7A7485;
 }
+.session-expired {
+  width: 100vw;
+  color: white;
+  background-color: #640000;
+  margin-top: -1rem;
+  padding: .5rem;
+}

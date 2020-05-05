@@ -14,6 +14,7 @@ import MyReviews from"../Reviews/MyReviews"
 import SearchResults from "../Search/SearchResults"
 import {socket, provider} from "../../utils/auth"
 import API from "../../utils/api"
+import SessionExpired from '../SessionExpired/SessionExpired';
 //import './App.css';
 
 
@@ -47,7 +48,8 @@ export default class App extends Component {
       <storeContext.Provider value={store}>
         <Router>
           <div className={"wrapper"}>
-              <Header logout={this.logout}/>              
+              <Header logout={this.logout}/>
+              {store.sessionIsExpired ? <SessionExpired /> : ""}             
               <div className='container'>
                 {this.state.loading
                   ? <Loading /> 
@@ -56,7 +58,7 @@ export default class App extends Component {
                       <Route exact path="/bookshelves" component={MyLibrary} />
                       <Route exact path="/myreviews" component={MyReviews} />
                       <Route path="/bookshelves/:bookshelfId" render={(props) => (
-                        <Bookshelf key={props.match.params.bookshelfId} socket={socket} {...props} />)} />
+                        <Bookshelf key={props.match.params.bookshelfId} {...props} />)} />
                       <Route exact path="/books/:bookId" component={Book} />
                       <Route exact path="/search/:searchTerm" component={SearchResults} />
                     </Switch>
