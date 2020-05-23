@@ -14,8 +14,6 @@ import OAuth from "../Auth/OAuth"
 import {socket, provider} from "../../utils/auth"
 import { observer } from "mobx-react"
 
-//consider making links disabled when you're already on that route
-
 @observer
 class Header extends Component {
   constructor(props) {

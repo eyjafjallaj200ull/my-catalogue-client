@@ -17,7 +17,6 @@ class OAuth extends Component {
     console.log(provider);
     socket.on(provider, user => {  
       console.log("??")
-      this.setState({ disabled: ''})
       this.popup.close()
       this.context.addAllAuthData(user);
     })
