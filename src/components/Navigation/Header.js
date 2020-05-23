@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import Notifications from 'react-notify-toast'
 import { Route, NavLink, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { 
   Collapse,
