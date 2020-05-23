@@ -4,7 +4,6 @@ import { observer } from "mobx-react";
 import { storeContext } from "../../utils/storeContext";
 import { toJS } from "mobx";
 import Loading from "../Loading/Loading";
-import {API_URL} from "../../config";
 import API from "../../utils/api"
 
 @observer

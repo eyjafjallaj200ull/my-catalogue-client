@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import {storeContext} from "../../utils/storeContext"
 import { observer } from "mobx-react"
-import {toJS} from "mobx"
-import {Link} from "react-router-dom"
 import { withRouter } from 'react-router-dom'
 
 @observer

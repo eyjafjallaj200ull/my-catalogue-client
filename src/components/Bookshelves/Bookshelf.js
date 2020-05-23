@@ -1,10 +1,9 @@
 import React, {Component} from "react";
-import {API_URL} from "../../config";
 import {storeContext} from "../../utils/storeContext"
 import { observer } from "mobx-react"
 import {toJS} from "mobx"
 import API from "../../utils/api"
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 @observer
 class Bookshelf extends Component {
@@ -30,7 +29,7 @@ class Bookshelf extends Component {
         this.context.removeBooks();
         const { match: { params } } = this.props;
         API.fetchBooks(params.bookshelfId)
-          .then(data => {console.log(data); this.context.addBooks(data)})
+          .then(data => {this.context.addBooks(data)})
           .catch(err => console.log(err)) 
       } else {
         this.context.onSessionExpiry()

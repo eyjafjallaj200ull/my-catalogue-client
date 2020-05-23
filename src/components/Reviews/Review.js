@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {API_URL} from "../../config";
 import { storeContext } from "../../utils/storeContext";
 import API from "../../utils/api"
 

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Route, NavLink, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import { 
   Collapse,
   Nav,

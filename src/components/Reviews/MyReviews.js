@@ -5,7 +5,7 @@ import { toJS } from "mobx";
 import Loading from "../Loading/Loading";
 import Review from "./Review";
 import API from "../../utils/api";
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 @observer
@@ -20,7 +20,7 @@ class MyReviews extends Component {
     componentDidMount() {
         API.fetchMyReviews(this.context.authData.id, this.context.populateMyReviews)
     }
-    deleteReview = (reviewId, callback) => {
+    deleteReview = (reviewId) => {
         API.deleteReview(reviewId)
         .then(res => res.status === 204 ? API.fetchMyReviews(this.context.authData.id, this.context.populateMyReviews) : console.log("something went wrong"))
         .catch(err => console.error(err))

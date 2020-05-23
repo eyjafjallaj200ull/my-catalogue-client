@@ -3,14 +3,13 @@ import Loading from "../Loading/Loading"
 import {storeContext} from "../../utils/storeContext"
 import { observer } from "mobx-react"
 import {toJS} from "mobx"
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 @observer
 class MyLibrary extends Component {
     render() {
         const {authData, bookshelfClick} = this.context;
         const {bookshelves} = toJS(authData);
-        console.log(bookshelves)
         return(
             bookshelves ?   
                 <div id="my-library">

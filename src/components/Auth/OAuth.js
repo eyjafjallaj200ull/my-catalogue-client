@@ -12,11 +12,8 @@ class OAuth extends Component {
   }  
 
   componentDidMount() {
-    const { socket, provider } = this.props
-    console.log(socket);
-    console.log(provider);
+    const { socket, provider } = this.props;
     socket.on(provider, user => {  
-      console.log("??")
       this.popup.close()
       this.context.addAllAuthData(user);
     })
@@ -26,8 +23,6 @@ class OAuth extends Component {
   // if the user closes the popup without authenticating.
   checkPopup = () => {
     const check = setInterval(() => {
-      console.log(this.props.socket.id);
-      
       const { popup } = this
       if (!popup || popup.closed || popup.closed === undefined) {
         clearInterval(check)
@@ -57,7 +52,6 @@ class OAuth extends Component {
   // attempt to login to the provider twice.
   startAuth = () => {
     if (!this.state.disabled) {
-      //e.preventDefault()
       this.popup = this.openPopup()
       this.checkPopup()
       this.setState({disabled: 'disabled'})

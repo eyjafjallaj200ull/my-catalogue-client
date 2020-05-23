@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Loading from '../Loading/Loading'
 import MyLibrary from "../Bookshelves/MyLibrary"
 import 'font-awesome/css/font-awesome.min.css';
@@ -12,7 +12,7 @@ import Bookshelf from '../Bookshelves/Bookshelf'
 import Book from '../Book/Book'
 import MyReviews from"../Reviews/MyReviews"
 import SearchResults from "../Search/SearchResults"
-import {socket, provider} from "../../utils/auth"
+import {socket} from "../../utils/auth"
 import API from "../../utils/api"
 import SessionExpired from '../SessionExpired/SessionExpired';
 //import './App.css';

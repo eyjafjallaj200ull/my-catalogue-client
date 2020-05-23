@@ -82,7 +82,7 @@ class API {
             }
           })
           .then(resp => resp.json())
-          .then(data => {console.log(data); callback(data)})
+          .then(data => {callback(data)})
           .catch(err => console.log(err))
     }
 
